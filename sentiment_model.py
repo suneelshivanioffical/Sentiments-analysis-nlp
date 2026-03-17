@@ -1,13 +1,12 @@
 import streamlit as st
 from transformers import pipeline
 
-# Cache the model (loads only once)
 @st.cache_resource
 def load_model():
     return pipeline(
-        "sentiment-analysis",
+        "text-classification",
         model="cardiffnlp/twitter-roberta-base-sentiment-latest",
-        return_all_scores=True
+        top_k=None
     )
 
 sentiment_pipeline = load_model()
@@ -15,7 +14,7 @@ sentiment_pipeline = load_model()
 
 def analyze_sentiment(text):
 
-    results = sentiment_pipeline(text)[0]
+    results = sentiment_pipeline(text)
 
     scores = {
         "negative": 0,
@@ -23,17 +22,22 @@ def analyze_sentiment(text):
         "positive": 0
     }
 
-    for r in results:
+    # Handle nested structure safely
+    if isinstance(results, list) and len(results) > 0:
+        results = results[0]
 
-        label = r["label"].lower()
+    for item in results:
 
-        if label in ["label_0", "negative"]:
-            scores["negative"] = r["score"]
+        label = item["label"].lower()
+        score = item["score"]
 
-        elif label in ["label_1", "neutral"]:
-            scores["neutral"] = r["score"]
+        if "negative" in label:
+            scores["negative"] = score
 
-        elif label in ["label_2", "positive"]:
-            scores["positive"] = r["score"]
+        elif "neutral" in label:
+            scores["neutral"] = score
+
+        elif "positive" in label:
+            scores["positive"] = score
 
     return scores

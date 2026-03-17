@@ -5,6 +5,10 @@ A sentiment analysis on text using a Transformer-based NLP model. The applicatio
 ## Demo
 
 ![]()
+![]()
+
+## Live Demo - Streamlit Cloud
+
 
 ## Project Structure
 
@@ -22,7 +26,7 @@ SENTIMENT_ANALYSIS_TRANSFORMER
 - Analyze single text input
 - Perform batch sentiment analysis on CSV, Excel, or TXT files
 - Show confidence scores for each sentiment
-- Download analyzed results as CSV
+- Download analyzed results as file.
 - Fast model loading using Streamlit caching
 
 ## Technologies
