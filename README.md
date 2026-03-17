@@ -4,11 +4,12 @@ A sentiment analysis on text using a Transformer-based NLP model. The applicatio
 
 ## Demo
 
-![]()
-![]()
+![Sentiment Analysis using Transformers](Sentiments-analysis-nlp-demo.png)
+![Sentiment Analysis using Transformers](Sentiments-analysis-nlp_demo.png)
 
-## Live Demo - Streamlit Cloud
+## Live Demo_Streamlit 
 
+https://sentiments-analysis-nlp.streamlit.app/
 
 ## Project Structure
 
